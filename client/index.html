@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuelas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="text-center ">
+        <h3>
+            Listas
+        </h3>
+    </div>
+    <table id="tabla" class="text-center table table-striped">
+    </table>
+    <br>
+    <a href="createMarca.html" class="btn btn-outline-primary" style="float: right; margin-right: 60px;"
+        role="button">Registrar Marca </a>
+    <br>
+    <table id="tabla2" class="text-center table table-striped">
+    </table>
+    <br>
+    <a href="createAuto.html" class="btn btn-outline-primary" style="float: right; margin-right: 60px;"
+        role="button">Registrar Auto </a>
+    <!-- MODAL DETALLES MARCA-->
+    <div class="modal fade" id="detailsMarca" tabindex="-1" aria-labelledby="detailsMarca" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsMarca">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>id:</label>
+                    <input type="text" class="form-control" id="idDetails" disabled>
+                    <label>marca:</label>
+                    <input type="text" class="form-control" id="nameDetails" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal update AUTOS-->
+    <div class="modal fade" id="updateAutos" tabindex="-1" aria-labelledby="updateAutos" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateAutos">Actualizar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="updateAutos();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_update_auto">
+                        <label>Nombre:</label>
+                        <input type="text" class="form-control" id="name_auto_update" >
+                        <label>Matricula:</label>
+                        <input type="text" class="form-control" id="Matricula_update" >
+                        <label>Marca:</label>
+                        <input type="text" class="form-control" id="Marca_update" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- MODAL DELETE Auto-->
+    <div class="modal fade" id="deleteAuto" tabindex="-1" aria-labelledby="deleteAuto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAuto">Detalles del producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="deleteAuto();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_delete_auto">
+                        <label>¿Desea eliminar el producto?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL DELETE MARCA -->
+    <div class="modal fade" id="deleteMarc" tabindex="-1" aria-labelledby="deleteMarc" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteMarc">Detalles del producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="deleteMarca();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_delete_marca">
+                        <label>¿Desea eliminar el producto?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal AUTOS -->
+    <div class="modal fade" id="detailsAutos" tabindex="-1" aria-labelledby="detailsAutos" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsAutos">Detalles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" id="name_auto" disabled>
+                    <label>Matricula:</label>
+                    <input type="text" class="form-control" id="Matricula" disabled>
+                    <label>yearVerification:</label>
+                    <input type="number" class="form-control" id="yearVerification_details" disabled>
+                    <label>dateCreacion:</label>
+                    <input type="datetime" class="form-control" id="dateCreacion_details" disabled>
+                    <label>dateUpdate:</label>
+                    <input type="datetime" class="form-control" id="dateUpdate_details" disabled>
+                    <label>Estado:</label>
+                    <input type="text" class="form-control" id="status_details" disabled>
+                    <label>Marca:</label>
+                    <input type="datetime" class="form-control" id="Marca_details" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal update MARCA-->
+    <div class="modal fade" id="updateMarca" tabindex="-1" aria-labelledby="updateMarca" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateMarca">Actualizar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="updateMarc();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_updateOffice">
+                        <label>Id :</label>
+                        <input type="text" class="form-control" id="id_update_marca" disabled>
+                        <label>Name :</label>
+                        <input type="text" class="form-control" id="name_update_marca">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+    
+
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="./controller/controller.js"></script> <!-- El controler debe ir primero para que lo lea -->
+    <script src="./mains.js"></script>
+
+    <!--   ------------------------------------------------------------------------------------------------------------------------- -->
+
+</body>
+
+</html>
